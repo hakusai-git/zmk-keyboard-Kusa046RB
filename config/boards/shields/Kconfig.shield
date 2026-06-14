@@ -1,3 +1,3 @@
 # No whitespace after the comma or in your keyboard name!
-config SHIELD_MY_KEYBOARD
+config SHIELD_KUSA046RB
     def_bool $(shields_list_contains,Kusa046RB)
