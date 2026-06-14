@@ -1,3 +1,5 @@
+name: zmk-keyboard-Kusa046RB
 build:
   settings:
     board_root: .
+    

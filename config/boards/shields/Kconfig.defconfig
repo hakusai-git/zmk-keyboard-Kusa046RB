@@ -1,0 +1,7 @@
+if SHIELD_Kusa046RB
+
+# Name must be less than 16 characters long!
+config ZMK_KEYBOARD_NAME
+    default "Kusa046RB"
+
+endif
