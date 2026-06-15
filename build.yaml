@@ -19,5 +19,5 @@
 #
 ---
 include:
-  - board: xiao_ble
+  - board: xiao_ble/nrf52840
     shield: Kusa046RB

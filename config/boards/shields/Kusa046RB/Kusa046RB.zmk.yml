@@ -3,6 +3,6 @@ id: kusa046rb
 name: Kusa046RB
 type: shield
 url: https://github.com/hakusai-git/zmk-keyboard-Kusa046RB.git
-requires: [xiao_ble]
+requires: [xiao_ble/nrf52840]
 features:
   - keys
