@@ -64,7 +64,7 @@
 };
 
 
-
+/ {
     keymap {
         compatible = "zmk,keymap";
 
@@ -80,3 +80,4 @@
             sensor-bindings = <&enc0>;
         };
     };
+};
