@@ -1,5 +1,5 @@
-name: zmk-keyboard-Kusa046RB
+# zephyr/module.yml
 build:
   settings:
-    board_root: .
     shield_root: .
+    board_root: .
