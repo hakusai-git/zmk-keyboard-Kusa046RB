@@ -130,6 +130,6 @@
 
         // x方向の動きを水平スクロール(HWHEEL)Y方向の動きを垂直スクロール(WHEEL)に変換
         // 1本指スクロールのような挙動にするためのマッパーと、上記で定義した速度調整(scroller_profile)を適用
-        input-processors = <&zip_xy_to_scroll_mapper>, <&scroller_profile 1 4>;
+        input-processors = <&zip_xy_to_scroll 0 0>, <&scroller_profile 1 4>;
     };
 };
