@@ -61,6 +61,16 @@
             bindings = <&mkp MB4>, <&mkp MB5>;
         };
     };
+// スクロールを調節
+    scroller_profile {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        // 以下の数値を小さくするとスクロールが遅く（精密に）、大きくすると激しくスクロールします
+        // 分子(1) / 分母(4) = 0.25倍の速度に減速（トラックボールの球は回りすぎるため減速が推奨されます）
+        type = <INPUT_EV_REL>;
+        scale-multiplier = <1>;
+        scale-divisor = <4>;
+    };
 };
 
 
@@ -72,7 +82,7 @@
             display-name = "Base";
 
             bindings = <
-                &kp Q     &kp L    &kp U    &kp COMMA     &kp DOT          &mkp MB3 &none          &kp F   &kp W          &kp R     &kp Y     &kp P
+                &kp Q     &kp L    &kp U    &kp COMMA     &kp DOT          &mkp MB3 &mo 7          &kp F   &kp W          &kp R     &kp Y     &kp P
                 &kp E     &kp I    &kp A    &kp O         &mo1                                     &kp K   &kp T          &kp N     &kp S     &kp H
                 &kp Z     &kp X    &kp C    &kp V         &mo2                                     &kp G   &kp D          &kp M     &kp J     &kp B
                 &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN &kp SPACE &none  &mkp MB1 &mkp MB2 &none &kp RET &lt 5 JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
