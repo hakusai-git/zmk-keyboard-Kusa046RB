@@ -117,19 +117,4 @@
     compatible = "zmk,input-listener";
     device = <&trackball>;
   };
-
-// スクロールモード用リスナー
-    trackball_scroll_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-        
-        // 【ここがポイント】入力をXY移動ではなく、スクロール（型番: INPUT_EV_REL）として処理する
-        xy-swap; // 必要に応じて。球を上下に転がした時に上下スクロールにするための設定
-        // スクロールレイヤーを指定
-        layers = <7>; 
-
-        // x方向の動きを水平スクロール(HWHEEL)Y方向の動きを垂直スクロール(WHEEL)に変換
-        // 1本指スクロールのような挙動にするためのマッパーと、上記で定義した速度調整(scroller_profile)を適用
-        input-processors = <&zip_xy_to_scroll 0 0>, <&scroller_profile 1 4>;
-    };
 };

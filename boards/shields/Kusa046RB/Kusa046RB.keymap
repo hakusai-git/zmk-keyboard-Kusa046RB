@@ -71,6 +71,16 @@
         scale-multiplier = <1>;
         scale-divisor = <4>;
     };
+    // スクロールモード用リスナー
+    trackball_scroll_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+        xy-swap; // 必要に応じて。球を上下に転がした時に上下スクロールにするための設定
+        layers = <7>; // スクロールレイヤーを指定
+
+        // 1本指スクロールのような挙動にするためのマッパーと、上記で定義した速度調整(scroller_profile)を適用
+        input-processors = <&zip_xy_to_scroll 0 0>, <&scroller_profile 1 4>;
+    };
 };
 
 
