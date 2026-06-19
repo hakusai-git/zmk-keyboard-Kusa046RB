@@ -120,37 +120,42 @@
 };
 
 // バッテリー関連
-/ {
-    /* 💡 公式のリポ用と衝突しないよう、独自の「vbatt_nimh」ノードを作ります */
-    vbatt_nimh: vbatt_nimh {
-        compatible = "zmk,battery-voltage-divider";
-        
-        /* 🔥 コネクタ名ではなく、ADCコントローラ本体の「0番チャンネル」を直接指定します */
-        io-channels = <&adc 0>; 
-        
-        /* 回路図通りの分圧抵抗値 */
-        output-ohms = <470000>;
-        full-ohms = <(1000000 + 470000)>;
-    };
-};
-
-/* 💡 XIAO BLEボードに最初から入っている「公式の内蔵リポ用vbatt」を無効化（無効化）します */
-&vbatt {
-    status = "disabled";
-};
-
-/* 💡 ADC（アナログ・デジタル変換器）本体の設定を安全に上書き */
+/* ==========================================================================
+   1. ADC（アナログ・デジタル変換器）の設定
+   XIAO BLEのA0ピンに対応する内部チャンネル0（AIN0）を初期化します。
+   ========================================================================== */
 &adc {
     status = "okay";
     #address-cells = <1>;
     #size-cells = <0>;
 
-    /* A0ピン（内部的にはAIN0）を、バッテリー測定に適した設定で初期化 */
     channel@0 {
         reg = <0>;
-        zephyr,gain = "ADC_GAIN_1_6";          /* 1/6ゲイン */
-        zephyr,reference = "ADC_REF_INTERNAL";  /* 内部基準電圧(0.6V)を使用 */
+        zephyr,gain = "ADC_GAIN_1_6";          /* 1/6ゲイン（nRF52の標準設定） */
+        zephyr,reference = "ADC_REF_INTERNAL";  /* 内部基準電圧（0.6V）を使用 */
         zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
-        zephyr,input-positive = <NRF_SAADC_AIN0>; /* A0ピン(P0.02)を指定 */
+        zephyr,input-positive = <NRF_SAADC_AIN0>; /* A0ピン (P0.02) を指定 */
     };
+};
+
+/* ==========================================================================
+   2. バッテリー監視ノード（vbatt）の上書き設定
+   XIAO BLEに最初から定義されている「vbatt」をNiMH仕様に上書きします。
+   ========================================================================== */
+&vbatt {
+    status = "okay";
+    compatible = "zmk,battery-voltage-divider";
+    
+    /* 入力ソースを A0ピン（ADCのチャンネル0）に切り替え */
+    io-channels = <&adc 0>; 
+
+    /* 🔥最重要：XIAO BLE標準の内蔵リポ用充放電制御ピン（P0.14）の設定を完全に消去。
+       これを行うことで、前回のビルドエラーの原因となっていた空のプロパティ問題を解決します。 */
+    /delete-property/ power-gpios;
+
+    /* 💡 NiMH (1.4V〜1.1V) を LiPo (4.2V〜3.3V) に見せかけるため、倍率を3倍に設定
+       実際の抵抗値：output-ohms = 470kΩ, full-ohms = 1MΩ + 470kΩ = 1470kΩ
+       設定する値：output-ohms = 470000, full-ohms = 1470000 * 3 = 4410000 */
+    output-ohms = <470000>;
+    full-ohms = <4410000>; 
 };
