@@ -51,7 +51,7 @@
         #input-processor-cells = <2>;
         type = <INPUT_EV_REL>;
         codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
-        track-remainders;
+        // track-remainders; // 端数切捨てで微細な動作を抑制
     };
 
     /* 3. レイヤー6にいる間だけ、上の2つを適用してトラックボールを傍受する */
@@ -69,7 +69,7 @@
             input-processors = <
                 &zip_xy_to_scroll_mapper /* マウス移動をスクロールに変換 */
                 
-                &zip_scroll_scaler 1 3 /* スクロール量の比率を調整（例: 1 3 だと3倍細かく/遅くなり、3 1 だと3倍粗く/速くなります） */
+                &zip_scroll_scaler 1 4 /* スクロール量の比率を調整（例: 1 3 だと3倍細かく/遅くなり、3 1 だと3倍粗く/速くなります） */
 
                 // &zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT) /* 必要に応じてスクロール方向を反転*/
                 // &zip_scroll_transform (INPUT_TRANSFORM_X_INVERT)
