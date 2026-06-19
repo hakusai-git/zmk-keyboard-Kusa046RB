@@ -121,26 +121,36 @@
 
 // バッテリー関連
 / {
-    /* 1. ZMKシステムに、このバッテリードライバを使用することを登録 */
-    chosen {
-        zmk,battery = &vbatt;
-    };
-
-    /* 2. 実際のバッテリー分圧測定の設定 */
-    vbatt: vbatt {
+    /* 💡 公式のリポ用と衝突しないよう、独自の「vbatt_nimh」ノードを作ります */
+    vbatt_nimh: vbatt_nimh {
         compatible = "zmk,battery-voltage-divider";
         
-        /* 💡 dyabatt.txtに合わせ、ADCの0番（AIN0 = XIAOのD0ピン/P0.02）を指定 */
-        io-channels = <&xiao_d 2>; 
-        power-gpios;
-
-        /* 💡 回路図の抵抗値（RR2=1MΩ, RR3=470kΩ）をオーム単位で正確に反映 */
-        output-ohms = <470000>;          /* GND側の抵抗(RR3) */
-        full-ohms = <(1000000 + 470000)>; /* 全体の合計抵抗(RR2 + RR3) */
+        /* 🔥 コネクタ名ではなく、ADCコントローラ本体の「0番チャンネル」を直接指定します */
+        io-channels = <&adc 0>; 
+        
+        /* 回路図通りの分圧抵抗値 */
+        output-ohms = <470000>;
+        full-ohms = <(1000000 + 470000)>;
     };
 };
 
-/* ADC（アナログ・デジタル変換機能）自体を有効化 */
+/* 💡 XIAO BLEボードに最初から入っている「公式の内蔵リポ用vbatt」を無効化（無効化）します */
+&vbatt {
+    status = "disabled";
+};
+
+/* 💡 ADC（アナログ・デジタル変換器）本体の設定を安全に上書き */
 &adc {
     status = "okay";
+    #address-cells = <1>;
+    #size-cells = <0>;
+
+    /* A0ピン（内部的にはAIN0）を、バッテリー測定に適した設定で初期化 */
+    channel@0 {
+        reg = <0>;
+        zephyr,gain = "ADC_GAIN_1_6";          /* 1/6ゲイン */
+        zephyr,reference = "ADC_REF_INTERNAL";  /* 内部基準電圧(0.6V)を使用 */
+        zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+        zephyr,input-positive = <NRF_SAADC_AIN0>; /* A0ピン(P0.02)を指定 */
+    };
 };

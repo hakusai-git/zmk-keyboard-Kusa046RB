@@ -35,8 +35,7 @@ uint8_t get_nimh_battery_percent(uint32_t real_mv) {
 
 void battery_nimh_thread(void) {
     /* デバイスツリーから vbatt ノード（電圧計算をしてくれるドライバ）を取得 */
-    const struct device* vbatt_dev = DEVICE_DT_GET(DT_NODELABEL(vbatt));
-
+    const struct device* vbatt_dev = DEVICE_DT_GET(DT_NODELABEL(vbatt_nimh));
 #if DT_NODE_HAS_STATUS(LED_NODE, okay)
     if (device_is_ready(led.port)) {
         gpio_pin_configure_dt(&led, GPIO_OUTPUT_INACTIVE);
