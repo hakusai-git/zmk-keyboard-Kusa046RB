@@ -131,16 +131,12 @@
         compatible = "zmk,battery-voltage-divider";
         
         /* 💡 dyabatt.txtに合わせ、ADCの0番（AIN0 = XIAOのD0ピン/P0.02）を指定 */
-        io-channels = <&adc 0>; 
+        io-channels = <&xiao_d 2>; 
         power-gpios;
 
         /* 💡 回路図の抵抗値（RR2=1MΩ, RR3=470kΩ）をオーム単位で正確に反映 */
         output-ohms = <470000>;          /* GND側の抵抗(RR3) */
         full-ohms = <(1000000 + 470000)>; /* 全体の合計抵抗(RR2 + RR3) */
-
-        /* 📊 dya-dashのNiMH1本用しきい値テーブル（計11個の値を並べる仕様） */
-        /* 左から順に 0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% の電圧(mV)に対応します */
-        mv-to-pct-thresholds = <1100 1150 1200 1220 1240 1260 1280 1300 1320 1350 1400>;
     };
 };
 
