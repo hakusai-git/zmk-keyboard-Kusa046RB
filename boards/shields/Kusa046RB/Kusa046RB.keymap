@@ -138,10 +138,10 @@
 /*
         DEFT {
             bindings = <
-                &kp Q     &kp L    &kp U    &kp COMMA        &kp DOT          &mkp MB3 &mo 7          &kp F   &kp W             &kp R     &kp Y     &kp P
-                &kp E     &kp I    &kp A    &kp O            &mo1                                     &kp K   &kp T             &kp N     &kp S     &kp H
-                &kp Z     &kp X    &kp C    &kp V            &mo2                                     &kp G   &kp D             &kp M     &kp J     &kp B
-                &kp LCTRL &kp LGUI &kp LALT &lt NUMS JP_MHEN &kp SPACE &none  &mkp MB1 &mkp MB2 &none &kp RET &lt SYMB JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
+                &kp Q     &kp L    &kp U    &kp COMMA      &kp DOT          &mkp MB3 &mo 7          &kp F   &kp W          &kp R     &kp Y     &kp P
+                &kp E     &kp I    &kp A    &kp O          &mo1                                     &kp K   &kp T          &kp N     &kp S     &kp H
+                &kp Z     &kp X    &kp C    &kp V          &mo2                                     &kp G   &kp D          &kp M     &kp J     &kp B
+                &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN  &kp SPACE &none  &mkp MB1 &mkp MB2 &none &kp RET &lt 5 JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
             >;    
             sensor-bindings = <&enc0>;
         };
@@ -167,10 +167,10 @@
 
         NUMS {
             bindings = <
-                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to DEFT  &trans         &kp K_PP     &kp MINUS  &none      &kp AT_SIGN    &kp LEFT_BRACKET
+                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to 3   &trans         &kp K_PP     &kp MINUS  &none      &kp AT_SIGN    &kp LEFT_BRACKET
                 &kp KP_SLASH     &kp N4  &kp N5  &kp N6  &kp KP_MINUS                                  &kp PG_UP    &kp CARET  &kp SEMI   &kp COLON      &kp RIGHT_BRACKET
                 &kp KP_ASTERISK  &kp N1  &kp N2  &kp N3  &kp KP_PLUS                                   &kp PG_DOWN  &none      &kp SLASH  &kp BACKSLASH  &kp NON_US_BACKSLASH
-                &trans           &trans  &trans  &trans  &trans        &none  &trans    &trans  &none  &trans       &trans     &ct3       &none          &trans
+                &trans           &trans  &trans  &trans  &trans        &none  &trans  &trans  &none  &trans       &trans     &ct3       &none          &trans
             >;
         };
     };
