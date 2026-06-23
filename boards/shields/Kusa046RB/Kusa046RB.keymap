@@ -6,6 +6,15 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <input/processors.dtsi>
 
+#define DEFT 0
+#define ARRW 1
+#define WASD 2
+#define NONO 3
+#define NUMS 4
+#define SYMB 5
+#define FUNC 6
+#define SCRL 7
+
 // OS設定を日本語キーボードのまま使用するための変換定義
 #define JP_DQUOTE       AT                // "
 #define JP_AMPERSAND    CARET             // &
@@ -113,16 +122,56 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer { // layer 0
-            display-name = "Base";
-
+        0 {
             bindings = <
-                &kp Q     &kp L    &kp U    &kp COMMA     &kp DOT          &mkp MB3 &mo 7          &kp F   &kp W          &kp R     &kp Y     &kp P
-                &kp E     &kp I    &kp A    &kp O         &mo1                                     &kp K   &kp T          &kp N     &kp S     &kp H
-                &kp Z     &kp X    &kp C    &kp V         &mo2                                     &kp G   &kp D          &kp M     &kp J     &kp B
-                &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN &kp SPACE &none  &mkp MB1 &mkp MB2 &none &kp RET &lt 5 JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
+                /* F1 〜 F12 (12キー) */
+                &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
+                /* 0 〜 9 (10キー) */
+                &kp N0 &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &kp N8 &kp N9
+                /* a 〜 x (24キー) */
+                &kp A  &kp B  &kp C  &kp D  &kp E  &kp F  &kp G  &kp H  &kp I  &kp J
+                &kp K  &kp L  &kp M  &kp N  &kp O  &kp P  &kp Q  &kp R  &kp S  &kp T
+                &kp U  &kp V  &kp W  &kp X
+            >;
+            sensor-bindings = <&enc0>;
+        }
+
+        DEFT {
+            bindings = <
+                &kp Q     &kp L    &kp U    &kp COMMA        &kp DOT          &mkp MB3 &mo 7          &kp F   &kp W             &kp R     &kp Y     &kp P
+                &kp E     &kp I    &kp A    &kp O            &mo1                                     &kp K   &kp T             &kp N     &kp S     &kp H
+                &kp Z     &kp X    &kp C    &kp V            &mo2                                     &kp G   &kp D             &kp M     &kp J     &kp B
+                &kp LCTRL &kp LGUI &kp LALT &lt NUMS JP_MHEN &kp SPACE &none  &mkp MB1 &mkp MB2 &none &kp RET &lt SYMB JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
             >;    
             sensor-bindings = <&enc0>;
         };
+
+        ARRW {
+            bindings = <
+            >;
+        }
+
+        WASD {
+            bindings = <
+                &kp T       &kp Q   &kp W   &kp E   &kp R           &trans  &trans          &kp Y   &kp U   &kp I      &kp O    &kp P
+                &kp G       &kp A   &kp S   &kp D   &kp F                                   &kp H   &kp J   &kp K      &kp L    &kp B
+                &kp LSHIFT  &kp Z   &kp X   &kp C   &kp V                                   &kp N   &kp M   &kp COMMA  &kp DOT  &kp SLASH
+                &kp LCTRL   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans     &trans   &trans
+            >;
+        }
+
+        NONO {
+            bindings = <
+            >;
+        }
+
+        NUMS {
+            bindings = <
+                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to DEFT  &trans         &K_PP     &kp MINUS  &none      &kp AT_SIGN    &kp LEFT_BRACKET
+                &kp KP_SLASH     &kp N4  &kp N5  &kp N6  &kp KP_MINUS                                  &PG_UP    &kp CARET  &kp SEMI   &kp COLON      &kp RIGHT_BRACKET
+                &kp KP_ASTERISK  &kp N1  &kp N2  &kp N3  &kp KP_PLUS                                   &PG_DOWN  &none      &kp SLASH  &kp BACKSLASH  &kp NON_US_BACKSLASH
+                &trans           &trans  &trans  &trans  &trans        &none  &trans    &trans  &none  &trans    &trans     &mo3       &none          &trans
+            >;
+        }
     };
 };
