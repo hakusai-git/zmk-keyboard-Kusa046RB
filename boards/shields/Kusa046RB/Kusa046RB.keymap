@@ -135,7 +135,7 @@
             >;
             sensor-bindings = <&enc0>;
         };
-
+/*
         DEFT {
             bindings = <
                 &kp Q     &kp L    &kp U    &kp COMMA        &kp DOT          &mkp MB3 &mo 7          &kp F   &kp W             &kp R     &kp Y     &kp P
@@ -145,7 +145,7 @@
             >;    
             sensor-bindings = <&enc0>;
         };
-
+*/
         ARRW {
             bindings = <
             >;
