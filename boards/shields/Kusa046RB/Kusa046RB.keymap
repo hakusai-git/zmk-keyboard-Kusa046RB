@@ -59,7 +59,7 @@
 
     behaviors {
     // -(=), ;(+)の対策用modmorph
-        mod1: mod-morph-1 {
+        mo1: mod-morph-1 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&kp EQUAL>;
