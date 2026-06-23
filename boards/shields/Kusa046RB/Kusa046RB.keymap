@@ -15,29 +15,29 @@
 #define FUNC 6
 #define SCRL 7
 
-// OS設定を日本語キーボードのまま使用するための変換定義
+// OS設定を日本語キーボードのまま使用するための変換定義（ZMK 4.1の標準仕様にすべて修正）
 #define JP_DQUOTE       AT                // "
 #define JP_AMPERSAND    CARET             // &
-#define JP_QUOTE        AMPERSAND         // '
+#define JP_QUOTE        AMPS              // '
 #define JP_EQUAL        UNDER             // =
 #define JP_CARET        EQUAL             // ^
 #define JP_YEN          0x89              // ¥
 #define JP_PLUS         COLON             // +
 #define JP_TILDE        PLUS              // ~
 #define JP_PIPE         LS(0x89)          // |
-#define JP_AT           LEFT_BRACKET      // @
-#define JP_COLON        SINGLE_QUOTE      // :
-#define JP_ASTERISK     DOUBLE_QUOTES     // *
-#define JP_BACKQUOTE    LEFT_BRACE        // `
+#define JP_AT           LBKT              // @
+#define JP_COLON        SQT               // :
+#define JP_ASTERISK     DQT               // *
+#define JP_BACKQUOTE    LBRC              // `
 #define JP_UNDERSCORE   LS(0x87)          // _
-#define JP_LBRACKET     RIGHT_BRACKET     // [
-#define JP_RBRACKET     BACKSLASH         // ]
-#define JP_LPAREN       ASTERISK          // (
-#define JP_RPAREN       LEFT_PARENTHESIS  // )
-#define JP_LBRACE       RIGHT_BRACE       // {
+#define JP_LBRACKET     RBKT              // [
+#define JP_RBRACKET     BSLH              // ]
+#define JP_LPAREN       ASTRK             // (
+#define JP_RPAREN       LPAR              // )
+#define JP_LBRACE       RBRC              // {
 #define JP_RBRACE       PIPE              // }
-#define JP_KANA         LANGUAGE_1        // かな
-#define JP_EISU         LANGUAGE_2        // 英数
+#define JP_KANA         LANG1             // かな
+#define JP_EISU         LANG2             // 英数
 #define JP_HANZEN       GRAVE             // 半角/全角
 #define JP_MHEN         INT5              // Muhenkan (無変換)
 #define JP_HENK         INT4              // Henkan (変換)
@@ -135,7 +135,7 @@
             bindings = <
                 &kp T       &kp Q   &kp W   &kp E   &kp R           &trans  &trans          &kp Y   &kp U   &kp I      &kp O    &kp P
                 &kp G       &kp A   &kp S   &kp D   &kp F                                   &kp H   &kp J   &kp K      &kp L    &kp B
-                &kp LSHIFT  &kp Z   &kp X   &kp C   &kp V                                   &kp N   &kp M   &kp COMMA  &kp DOT  &kp SLASH
+                &kp LSHIFT  &kp Z   &kp X   &kp C   &kp V                                   &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH  /* 💡 &kp FSLH に修正 */
                 &kp LCTRL   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans     &trans   &trans
             >;
         };
@@ -147,12 +147,12 @@
 
         NUMS {
             bindings = <
-                /* 👍 &to 0 に変更し、&kp K_PP に修正しました */
-                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to 0     &trans         &kp K_PP     &kp MINUS  &none      &kp AT_SIGN    &kp LEFT_BRACKET
-                /* 👍 &kp PG_UP に修正しました */
-                &kp KP_SLASH     &kp N4  &kp N5  &kp N6  &kp KP_MINUS                                  &kp PG_UP    &kp CARET  &kp SEMI   &kp COLON      &kp RIGHT_BRACKET
-                /* 👍 &kp PG_DOWN に修正しました */
-                &kp KP_ASTERISK  &kp N1  &kp N2  &kp N3  &kp KP_PLUS                                   &kp PG_DOWN  &none      &kp SLASH  &kp BACKSLASH  &kp NON_US_BACKSLASH
+                /* 💡 &kp AT と &kp LBKT に修正しました */
+                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to 0     &trans         &kp K_PP     &kp MINUS  &none      &kp AT         &kp LBKT
+                /* 💡 &kp RBKT に修正しました */
+                &kp KP_SLASH     &kp N4  &kp N5  &kp N6  &kp KP_MINUS                                  &kp PG_UP    &kp CARET  &kp SEMI   &kp COLON      &kp RBKT
+                /* 💡 &kp FSLH, &kp BSLH, &kp NON_US_BSLH に修正しました */
+                &kp KP_ASTERISK  &kp N1  &kp N2  &kp N3  &kp KP_PLUS                                   &kp PG_DOWN  &none      &kp FSLH   &kp BSLH       &kp NON_US_BSLH
                 &trans           &trans  &trans  &trans  &trans        &none  &trans    &trans  &none  &trans       &trans     &ct3       &none          &trans
             >;
         };
