@@ -89,7 +89,7 @@
 
     behaviors {
     // -(=), ;(+)の対策用modmorph
-        mo1: mod-morph-1 {
+        mod1: mod-morph-1 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&kp EQUAL>;
@@ -122,7 +122,7 @@
     keymap {
         compatible = "zmk,keymap";
 
-        0 {
+        TEST {
             bindings = <
                 /* F1 〜 F12 (12キー) */
                 &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
@@ -167,10 +167,10 @@
 
         NUMS {
             bindings = <
-                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to DEFT  &trans         &K_PP     &kp MINUS  &none      &kp AT_SIGN    &kp LEFT_BRACKET
-                &kp KP_SLASH     &kp N4  &kp N5  &kp N6  &kp KP_MINUS                                  &PG_UP    &kp CARET  &kp SEMI   &kp COLON      &kp RIGHT_BRACKET
-                &kp KP_ASTERISK  &kp N1  &kp N2  &kp N3  &kp KP_PLUS                                   &PG_DOWN  &none      &kp SLASH  &kp BACKSLASH  &kp NON_US_BACKSLASH
-                &trans           &trans  &trans  &trans  &trans        &none  &trans    &trans  &none  &trans    &trans     &mo3       &none          &trans
+                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to DEFT  &trans         &kp K_PP     &kp MINUS  &none      &kp AT_SIGN    &kp LEFT_BRACKET
+                &kp KP_SLASH     &kp N4  &kp N5  &kp N6  &kp KP_MINUS                                  &kp PG_UP    &kp CARET  &kp SEMI   &kp COLON      &kp RIGHT_BRACKET
+                &kp KP_ASTERISK  &kp N1  &kp N2  &kp N3  &kp KP_PLUS                                   &kp PG_DOWN  &none      &kp SLASH  &kp BACKSLASH  &kp NON_US_BACKSLASH
+                &trans           &trans  &trans  &trans  &trans        &none  &trans    &trans  &none  &trans       &trans     &mo3       &none          &trans
             >;
         };
     };
