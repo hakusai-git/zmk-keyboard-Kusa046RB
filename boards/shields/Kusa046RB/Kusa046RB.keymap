@@ -81,14 +81,14 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&kp EQUAL>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
+            mods = <(MOD_LSHIFT|MOD_RSHIFT)>;
         };
 
         mo2: mod-morph-2 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp SEMI>, <&kp PLUS>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
+            mods = <(MOD_LSHIFT|MOD_RSHIFT)>;
         };
 
         // CAPSをいい感じに押し込める        
@@ -96,7 +96,7 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&lt 6 TAB>, <&kp CAPS>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
+            mods = <(MOD_LSHIFT|MOD_RSHIFT)>;
         };
 
         // encoderのレイヤー切り替え
@@ -147,10 +147,9 @@
 
         NUMS {
             bindings = <
-                /* 💡 &kp AT と &kp LBKT に修正しました */
-                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to 0     &trans         &kp K_PP     &kp MINUS  &none      &kp AT         &kp LBKT
+                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to 0     &trans         &kp K_PP     &kp MINUS  &none      &kp AT_SIGN         &kp LEFT_BRACKET
                 /* 💡 &kp RBKT に修正しました */
-                &kp KP_SLASH     &kp N4  &kp N5  &kp N6  &kp KP_MINUS                                  &kp PG_UP    &kp CARET  &kp SEMI   &kp COLON      &kp RBKT
+                &kp KP_SLASH     &kp N4  &kp N5  &kp N6  &kp KP_MINUS                                  &kp PG_UP    &kp CARET  &kp SEMI   &kp COLON      &kp RIGHT_BRACKET
                 /* 💡 &kp FSLH, &kp BSLH, &kp NON_US_BSLH に修正しました */
                 &kp KP_ASTERISK  &kp N1  &kp N2  &kp N3  &kp KP_PLUS                                   &kp PG_DOWN  &none      &kp FSLH   &kp BSLH       &kp NON_US_BSLH
                 &trans           &trans  &trans  &trans  &trans        &none  &trans    &trans  &none  &trans       &trans     &ct3       &none          &trans
