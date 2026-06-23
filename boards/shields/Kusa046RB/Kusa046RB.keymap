@@ -134,7 +134,7 @@
                 &kp U  &kp V  &kp W  &kp X
             >;
             sensor-bindings = <&enc0>;
-        }
+        };
 
         DEFT {
             bindings = <
@@ -149,7 +149,7 @@
         ARRW {
             bindings = <
             >;
-        }
+        };
 
         WASD {
             bindings = <
@@ -158,12 +158,12 @@
                 &kp LSHIFT  &kp Z   &kp X   &kp C   &kp V                                   &kp N   &kp M   &kp COMMA  &kp DOT  &kp SLASH
                 &kp LCTRL   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans     &trans   &trans
             >;
-        }
+        };
 
         NONO {
             bindings = <
             >;
-        }
+        };
 
         NUMS {
             bindings = <
@@ -172,6 +172,6 @@
                 &kp KP_ASTERISK  &kp N1  &kp N2  &kp N3  &kp KP_PLUS                                   &PG_DOWN  &none      &kp SLASH  &kp BACKSLASH  &kp NON_US_BACKSLASH
                 &trans           &trans  &trans  &trans  &trans        &none  &trans    &trans  &none  &trans    &trans     &mo3       &none          &trans
             >;
-        }
+        };
     };
 };
