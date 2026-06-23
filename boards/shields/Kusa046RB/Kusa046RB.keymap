@@ -42,8 +42,6 @@
 #define JP_MHEN         INT5              // Muhenkan (無変換)
 #define JP_HENK         INT4              // Henkan (変換)
 
-
-
 / {
     /* 1. X/Yの動きを水平/垂直スクロールの信号に変換する */
     zip_scroll_mapper: zip_scroll_mapper {
@@ -60,55 +58,48 @@
         #input-processor-cells = <2>;
         type = <INPUT_EV_REL>;
         codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
-        // track-remainders; // 端数切捨てで微細な動作を抑制
     };
 
-    /* 3. レイヤー6にいる間だけ、上の2つを適用してトラックボールを傍受する */
-    /* トラックボールのインプットリスナー設定 */
+    /* 3. トラックボールのインプットリスナー設定 */
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
-        
-        /* 💡お使いのトラックボールのデバイスノード名（&trackball や &pmw3610 など）に合わせてください */
-        device = <&trackball>; 
+        device = <&trackball>;
 
-        /* 【公式仕様】子ノードを作ってレイヤーごとの挙動を上書き定義します */
         scroller {
-            layers = <7>; /* レイヤー6がアクティブなときだけ発動 */
+            layers = <7>;
             input-processors = <
-                &zip_scroll_mapper /* マウス移動をスクロールに変換 */
-                
-                &zip_scroll_scaler 1 4 /* スクロール量の比率を調整（例: 1 3 だと3倍細かく/遅くなり、3 1 だと3倍粗く/速くなります） */
-
-                // &zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT) /* 必要に応じてスクロール方向を反転*/
-                // &zip_scroll_transform (INPUT_TRANSFORM_X_INVERT)
-            >; 
+                &zip_scroll_mapper 
+                &zip_scroll_scaler 1 4 
+            >;
         };
     };
 
-
     behaviors {
-    // -(=), ;(+)の対策用modmorph
+        // -(=), ;(+)の対策用modmorph
         mod1: mod-morph-1 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&kp EQUAL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
         mo2: mod-morph-2 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp SEMI>, <&kp PLUS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-// CAPSをいい感じに押し込める        
+
+        // CAPSをいい感じに押し込める        
         ct3: mod-morph-3 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&lt 6 TAB>, <&kp CAPS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-// encorderのレイヤー切り替え
+
+        // encoderのレイヤー切り替え
         enc0: encoder-0 {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
@@ -116,7 +107,6 @@
         };
     };
 };
-
 
 / {
     keymap {
@@ -135,17 +125,7 @@
             >;
             sensor-bindings = <&enc0>;
         };
-/*
-        DEFT {
-            bindings = <
-                &kp Q     &kp L    &kp U    &kp COMMA      &kp DOT          &mkp MB3 &mo 7          &kp F   &kp W          &kp R     &kp Y     &kp P
-                &kp E     &kp I    &kp A    &kp O          &mo1                                     &kp K   &kp T          &kp N     &kp S     &kp H
-                &kp Z     &kp X    &kp C    &kp V          &mo2                                     &kp G   &kp D          &kp M     &kp J     &kp B
-                &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN  &kp SPACE &none  &mkp MB1 &mkp MB2 &none &kp RET &lt 5 JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
-            >;    
-            sensor-bindings = <&enc0>;
-        };
-*/
+
         ARRW {
             bindings = <
             >;
@@ -167,10 +147,13 @@
 
         NUMS {
             bindings = <
-                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to 0   &trans         &kp K_PP     &kp MINUS  &none      &kp AT_SIGN    &kp LEFT_BRACKET
+                /* 👍 &to 0 に変更し、&kp K_PP に修正しました */
+                &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to 0     &trans         &kp K_PP     &kp MINUS  &none      &kp AT_SIGN    &kp LEFT_BRACKET
+                /* 👍 &kp PG_UP に修正しました */
                 &kp KP_SLASH     &kp N4  &kp N5  &kp N6  &kp KP_MINUS                                  &kp PG_UP    &kp CARET  &kp SEMI   &kp COLON      &kp RIGHT_BRACKET
+                /* 👍 &kp PG_DOWN に修正しました */
                 &kp KP_ASTERISK  &kp N1  &kp N2  &kp N3  &kp KP_PLUS                                   &kp PG_DOWN  &none      &kp SLASH  &kp BACKSLASH  &kp NON_US_BACKSLASH
-                &trans           &trans  &trans  &trans  &trans        &none  &trans  &trans  &none  &trans       &trans     &ct3       &none          &trans
+                &trans           &trans  &trans  &trans  &trans        &none  &trans    &trans  &none  &trans       &trans     &ct3       &none          &trans
             >;
         };
     };
