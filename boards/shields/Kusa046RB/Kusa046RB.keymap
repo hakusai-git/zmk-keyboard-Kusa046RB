@@ -102,7 +102,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 // CAPSをいい感じに押し込める        
-        CTmo3: mod-morph-3 {
+        ct3: mod-morph-3 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&lt 6 TAB>, <&kp CAPS>;
@@ -170,7 +170,7 @@
                 &kp DOT          &kp N7  &kp N8  &kp N9  &kp N0               &to DEFT  &trans         &kp K_PP     &kp MINUS  &none      &kp AT_SIGN    &kp LEFT_BRACKET
                 &kp KP_SLASH     &kp N4  &kp N5  &kp N6  &kp KP_MINUS                                  &kp PG_UP    &kp CARET  &kp SEMI   &kp COLON      &kp RIGHT_BRACKET
                 &kp KP_ASTERISK  &kp N1  &kp N2  &kp N3  &kp KP_PLUS                                   &kp PG_DOWN  &none      &kp SLASH  &kp BACKSLASH  &kp NON_US_BACKSLASH
-                &trans           &trans  &trans  &trans  &trans        &none  &trans    &trans  &none  &trans       &trans     &CTmo3     &none          &trans
+                &trans           &trans  &trans  &trans  &trans        &none  &trans    &trans  &none  &trans       &trans     &ct3       &none          &trans
             >;
         };
     };
