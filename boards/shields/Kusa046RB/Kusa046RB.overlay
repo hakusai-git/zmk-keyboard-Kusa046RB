@@ -53,5 +53,109 @@
         sensors = <&a_encoder>;
         triggers-per-rotation = <24>;
     };
+};
 
+// badjeff's PMW3610 driver
+
+&pinctrl {
+    spi0_default: spi0_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 1, 13)>,
+                <NRF_PSEL(SPIM_MOSI, 1, 15)>,
+                <NRF_PSEL(SPIM_MISO, 1, 14)>;
+        };
+    };
+
+    spi0_sleep: spi0_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 1, 13)>,
+                <NRF_PSEL(SPIM_MOSI, 1, 14)>,
+                <NRF_PSEL(SPIM_MISO, 1, 15)>;
+            low-power-enable;
+        };
+    };
+};
+
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+&spi0 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+
+    trackball: trackball@0 {
+        status = "okay";
+        compatible = "pixart,pmw3610-alt";
+        reg = <0>;
+        spi-max-frequency = <2000000>;
+        irq-gpios = <&gpio1 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        cpi = <600>;
+        // swap-xy; /* optional */
+        // invert-x; /* optional */
+        // invert-y; /* optional */
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+
+        // force-awake; /* optional */
+        /* keep the sensor awake while ZMK activity state is ACTIVE,
+           fallback to normal downshift mode after ZMK goes into IDLE / SLEEP mode.
+           thus, the sensor would be a `wakeup-source` */
+
+        // force-awake-4ms-mode; /* optional */
+        /* while force-awake is acitvated, enable this mode to force sampling per 
+           4ms, where the default sampling rate is 8ms. */
+        /* NOTE: apply this mode if you need 250Hz with direct USB connection. */
+    };
+};
+
+/ {
+// カーソル移動用リスナー
+  trackball_listener {
+    compatible = "zmk,input-listener";
+    device = <&trackball>;
+  };
+};
+
+// バッテリー関連
+/* ==========================================================================
+   1. ADC（アナログ・デジタル変換器）の設定
+   XIAO BLEのA0ピンに対応する内部チャンネル0（AIN0）を初期化します。
+   ========================================================================== */
+&adc {
+    status = "okay";
+    #address-cells = <1>;
+    #size-cells = <0>;
+
+    channel@0 {
+        reg = <0>;
+        zephyr,gain = "ADC_GAIN_1_6";          /* 1/6ゲイン（nRF52の標準設定） */
+        zephyr,reference = "ADC_REF_INTERNAL";  /* 内部基準電圧（0.6V）を使用 */
+        zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+        zephyr,input-positive = <NRF_SAADC_AIN0>; /* A0ピン (P0.02) を指定 */
+    };
+};
+
+/* ==========================================================================
+   2. バッテリー監視ノード（vbatt）の上書き設定
+   XIAO BLEに最初から定義されている「vbatt」をNiMH仕様に上書きします。
+   ========================================================================== */
+&vbatt {
+    status = "okay";
+    compatible = "zmk,battery-voltage-divider";
+    
+    /* 入力ソースを A0ピン（ADCのチャンネル0）に切り替え */
+    io-channels = <&adc 0>; 
+
+    /* 🔥最重要：XIAO BLE標準の内蔵リポ用充放電制御ピン（P0.14）の設定を完全に消去。
+       これを行うことで、前回のビルドエラーの原因となっていた空のプロパティ問題を解決します。 */
+    /delete-property/ power-gpios;
+
+    /* 💡 NiMH (1.4V〜1.1V) を LiPo (4.2V〜3.3V) に見せかけるため、倍率を3倍に設定
+       実際の抵抗値：output-ohms = 470kΩ, full-ohms = 1MΩ + 470kΩ = 1470kΩ
+       設定する値：output-ohms = 470000, full-ohms = 1470000 * 3 = 4410000 */
+    output-ohms = <470000>;
+    full-ohms = <4410000>; 
 };
