@@ -85,8 +85,6 @@
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
 
-    single-line;
-
     trackball: trackball@0 {
         status = "okay";
         compatible = "pixart,pmw3610-alt";
