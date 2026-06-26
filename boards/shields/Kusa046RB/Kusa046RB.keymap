@@ -63,6 +63,10 @@
         /* 💡お使いのトラックボールのデバイスノード名（&trackball や &pmw3610 など）に合わせてください */
         device = <&trackball>; 
 
+        default_binder {
+            layers = <0 1 2 3 4 5 6>;
+        };
+
         /* 【公式仕様】子ノードを作ってレイヤーごとの挙動を上書き定義します */
         scroller {
             layers = <7>; /* レイヤー6がアクティブなときだけ発動 */
@@ -117,7 +121,7 @@
             display-name = "Base";
 
             bindings = <
-                &kp Q     &kp L    &kp U    &kp COMMA     &kp DOT          &mkp MB3 &mo 7          &kp F   &kp W          &kp R     &kp Y     &kp P
+                &kp Q     &kp L    &kp U    &kp COMMA     &kp DOT          &mkp MB3 &kp N0          &kp F   &kp W          &kp R     &kp Y     &kp P
                 &kp E     &kp I    &kp A    &kp O         &mo1                                     &kp K   &kp T          &kp N     &kp S     &kp H
                 &kp Z     &kp X    &kp C    &kp V         &mo2                                     &kp G   &kp D          &kp M     &kp J     &kp B
                 &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN &kp SPACE &none  &mkp MB1 &mkp MB2 &none &kp RET &lt 5 JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
