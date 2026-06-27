@@ -18,7 +18,6 @@
 */
         interrupt-gpios = <&gpio0 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN) >;
         gpios
-
           = <&gpio1 0 GPIO_ACTIVE_HIGH> // 新0 <- 元2
           , <&xiao_d 5 GPIO_ACTIVE_HIGH> // 新1 <- 元5
           , <&gpio0 10 GPIO_ACTIVE_HIGH> // 新2 <- 元0
@@ -27,6 +26,7 @@
           , <&xiao_d 3 GPIO_ACTIVE_HIGH> // 新5 <- 元3
           , <&xiao_d 4 GPIO_ACTIVE_HIGH> // 新6 <- 元4
           , <&gpio0 9 GPIO_ACTIVE_HIGH> // 新7 <- 元7
+          ;
 /*
           = <&xiao_d 3 GPIO_ACTIVE_HIGH>
           , <&xiao_d 4 GPIO_ACTIVE_HIGH>
@@ -36,8 +36,8 @@
           , <&gpio0 10 GPIO_ACTIVE_HIGH>
           , <&gpio1 10 GPIO_ACTIVE_HIGH>
           , <&gpio1 0 GPIO_ACTIVE_HIGH>
-*/
           ;
+*/
     };
 
     default_transform: matrix_transform {
