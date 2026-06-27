@@ -12,9 +12,9 @@
         compatible = "zmk,kscan-gpio-charlieplex";
         wakeup-source;
 
-    debounce-press-ms = <5>;      /* 誤反応を防ぐため、少し長めに設定 */
-    debounce-release-ms = <5>;
-    debounce-scan-period-ms = <1>; /* スキャン周期をわずかに緩める */
+    debounce-press-ms = <10>;      /* 誤反応を防ぐため、少し長めに設定 */
+    debounce-release-ms = <10>;
+    debounce-scan-period-ms = <2>; /* スキャン周期をわずかに緩める */
 
         interrupt-gpios = <&gpio0 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN) >;
         gpios
