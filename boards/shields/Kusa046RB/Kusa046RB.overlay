@@ -1,6 +1,8 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 
-
+&uicr {
+        nfct-pins-as-gpios;
+};
 
 / {
     chosen {
@@ -14,14 +16,14 @@
 
         interrupt-gpios = <&gpio0 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN) >;
         gpios
-          = <&xiao_d 3 GPIO_ACTIVE_HIGH> //0,7,1,2,3,6,4,5
-          , <&gpio1 0 GPIO_ACTIVE_HIGH>
+          = <&xiao_d 3 GPIO_ACTIVE_HIGH>
           , <&xiao_d 4 GPIO_ACTIVE_HIGH>
           , <&xiao_d 5 GPIO_ACTIVE_HIGH>
           , <&xiao_d 6 GPIO_ACTIVE_HIGH>
-          , <&gpio1 10 GPIO_ACTIVE_HIGH>
           , <&gpio0 9 GPIO_ACTIVE_HIGH>
           , <&gpio0 10 GPIO_ACTIVE_HIGH>
+          , <&gpio1 10 GPIO_ACTIVE_HIGH>
+          , <&gpio1 0 GPIO_ACTIVE_HIGH>
           ;
     };
 
