@@ -124,7 +124,7 @@
                 &kp Q     &kp L    &kp U    &kp COMMA     &kp DOT          &mkp MB3 &kp N0          &kp F   &kp W          &kp R     &kp Y     &kp P
                 &kp E     &kp I    &kp A    &kp O         &mo1                                     &kp K   &kp T          &kp N     &kp S     &kp H
                 &kp Z     &kp X    &kp C    &kp V         &mo2                                     &kp G   &kp D          &kp M     &kp J     &kp B
-                &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN &kp SPACE &kp N1  &kp N2 &kp N3 &kp N4 &kp RET &lt 5 JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
+                &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN &kp SPACE &kp N1  &kp N2 &kp N3 &out OUT_BLE &kp RET &lt 5 JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
             >;    
             sensor-bindings = <&enc0>;
         };
