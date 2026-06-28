@@ -162,3 +162,7 @@
     output-ohms = <470000>;
     full-ohms = <4410000>; 
 };
+/* ZMK 4.1仕様：マイコンの内部DCDCコンバータを有効化する */
+&reg1 {
+    regulator-initial-mode = <NRF5X_REG_MODE_DCDC>;
+};
