@@ -30,7 +30,7 @@
     default_transform: matrix_transform {
         compatible = "zmk,matrix-transform";
         rows = <8>;
-        columns = <8>;
+        columns = <7>;
         // | SW1   | SW2   | SW3   | SW4   | SW5   |       | SW6   | SW7   |       | SW73  | SW74  | SW75  | SW76  | SW77  |
 		// | SW11  | SW12  | SW13  | SW14  | SW15  |       |       |       |       | SW63  | SW64  | SW65  | SW66  | SW67  |
 		// | SW21  | SW22  | SW23  | SW24  | SW25  |       |       |       |       | SW53  | SW54  | SW55  | SW56  | SW57  |
