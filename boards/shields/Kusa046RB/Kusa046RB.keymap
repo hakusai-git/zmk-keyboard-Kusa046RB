@@ -103,7 +103,7 @@
             bindings = <&lt 6 TAB>, <&kp CAPS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-// encorderのレイヤー切り替え
+// レイヤーごとのencorder
         enc0: encoder-0 {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
@@ -124,63 +124,84 @@
                 &kp Q     &kp L    &kp U    &kp COMMA     &kp DOT             &mkp MB3 &mo 7                 &kp F   &kp W          &kp R     &kp Y     &kp P
                 &kp E     &kp I    &kp A    &kp O         &mo1                                               &kp K   &kp T          &kp N     &kp S     &kp H
                 &kp Z     &kp X    &kp C    &kp V         &mo2                                               &kp G   &kp D          &kp M     &kp J     &kp B
-                &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN &kp SPACE &mkp MB3  &mkp MB1 &mkp MB2 &out OUT_USB &kp RET &lt 5 JP_HENK  &lt 7 TAB &kp PSCRN &kp ESC
+                &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN &kp SPACE &mkp MB3  &mkp MB1 &mkp MB2 &out OUT_USB &kp RET &lt 5 JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
             >;    
             sensor-bindings = <&enc0>;
         };
 
-        arrrows {
-            display-name = "Arrrows";
+        arrrows {   // layer1
+            display-name = "Arrrows"; 
 
             bindings = <
-                &mo 0
+                &mo 0 &none &none &none &none       &none &none       &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none &none &none &none &none &none &none &none &none &none 
             >;
         };
 
-        wasd {
+        wasd {  // layer2
             display-name = "WASD";
 
             bindings = <
-                &mo 0
+                &mo 0 &none &none &none &none       &none &none       &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none &none &none &none &none &none &none &none &none &none 
             >;
         };
 
-        none {
+        none {  // layer3
             display-name = "None";
 
             bindings = <
-                &mo 0
+                &mo 0 &none &none &none &none       &none &none       &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none &none &none &none &none &none &none &none &none &none 
             >;
         };
 
-        Nums {
+        Nums {  // layer4
             display-name = "Nums";
 
             bindings = <
-                &mo 0
+                &mo 0 &kp N4 &none &none &none       &none &none       &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none &none &none &none &none &none &none &none &none &none 
             >;
         };
 
-        symbols {
+        symbols {   // layer5
             display-name = "Symbols";
 
             bindings = <
-                &mo 0
+                &mo 0 &kp N5 &none &none &none       &none &none       &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none &none &none &none &none &none &none &none &none &none 
             >;
         };
 
-        functions {
+        functions { // layer6
             display-name = "Functions";
 
             bindings = <
-                &mo 0
+                &mo 0 &kp N6 &none &none &none       &none &none       &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none &none &none &none &none &none &none &none &none &none 
             >;
         };
-        scroll {
+        scroll {    // layer7
             display-name = "Scroll";
 
             bindings = <
-                &mo 0
+                &mo 0 &kp N7 &none &none &none       &none &none       &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none                         &none &none &none &none &none 
+                &none &none &none &none &none &none &none &none &none &none &none &none &none &none 
             >;
         };
     
