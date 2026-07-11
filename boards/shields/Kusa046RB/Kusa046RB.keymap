@@ -69,7 +69,7 @@
 
         /* 【公式仕様】子ノードを作ってレイヤーごとの挙動を上書き定義します */
         scroller {
-            layers = <7>; /* レイヤー6がアクティブなときだけ発動 */
+            layers = <7>; /* レイヤー7がアクティブなときだけ発動 */
             input-processors = <
                 &zip_xy_to_scroll_mapper /* マウス移動をスクロールに変換 */
                 
@@ -124,9 +124,65 @@
                 &kp Q     &kp L    &kp U    &kp COMMA     &kp DOT             &mkp MB3 &mo 7                 &kp F   &kp W          &kp R     &kp Y     &kp P
                 &kp E     &kp I    &kp A    &kp O         &mo1                                               &kp K   &kp T          &kp N     &kp S     &kp H
                 &kp Z     &kp X    &kp C    &kp V         &mo2                                               &kp G   &kp D          &kp M     &kp J     &kp B
-                &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN &kp SPACE &mkp MB3  &mkp MB1 &mkp MB2 &out OUT_USB &kp RET &lt 5 JP_HENK  &lt 6 TAB &kp PSCRN &kp ESC
+                &kp LCTRL &kp LGUI &kp LALT &lt 4 JP_MHEN &kp SPACE &mkp MB3  &mkp MB1 &mkp MB2 &out OUT_USB &kp RET &lt 5 JP_HENK  &lt 7 TAB &kp PSCRN &kp ESC
             >;    
             sensor-bindings = <&enc0>;
         };
+
+        arrrows {
+            display-name = "Arrrows";
+
+            bindings = <
+                &mo 0
+            >;
+        };
+
+        wasd {
+            display-name = "WASD";
+
+            bindings = <
+                &mo 0
+            >;
+        };
+
+        none {
+            display-name = "None";
+
+            bindings = <
+                &mo 0
+            >;
+        };
+
+        Nums {
+            display-name = "Nums";
+
+            bindings = <
+                &mo 0
+            >;
+        };
+
+        symbols {
+            display-name = "Symbols";
+
+            bindings = <
+                &mo 0
+            >;
+        };
+
+        functions {
+            display-name = "Functions";
+
+            bindings = <
+                &mo 0
+            >;
+        };
+        scroll {
+            display-name = "Scroll";
+
+            bindings = <
+                &mo 0
+            >;
+        };
+    
     };
 };
