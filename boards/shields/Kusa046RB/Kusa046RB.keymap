@@ -114,6 +114,11 @@
         };
 
 // レイヤーごとのencorder
+        enc00: encoder-00 {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&none>, <&none>;
+        };
         enc0: encoder-0 {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
@@ -153,6 +158,7 @@
                 &kp KP_SLASH    &kp N1  &kp N2  &kp N3  &kp KP_PLUS                              &none  &none    &none     &none     &none 
                 &trans          &trans  &trans  &trans  &trans       &trans &trans &trans &trans &trans &trans   &lt 6 TAB &trans    &trans
             >;
+            sensor-bindings = <&enc0>;
         };
 
         wasd {  // layer2
@@ -164,6 +170,7 @@
                 &kp LSHFT &kp Z  &kp X  &kp C  &kp V                                &kp N  &kp M  &kp COMMA &kp DOT &kp SLASH
                 &trans    &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &lt 6 TAB &trans  &trans
             >;
+            sensor-bindings = <&enc0>;
         };
 
         none {  // layer3
@@ -175,6 +182,7 @@
                 &none &none &none &none &none                         &none &none &none &none &none 
                 &none &none &none &none &none &none &none &none &none &none &none &none &none &none 
             >;
+            sensor-bindings = <&enc00>;
         };
 
         Nums {  // layer4
@@ -210,6 +218,7 @@
                 &none  &none    &none    &none     &none                              &kp END  &kp F9  &kp F10     &kp F11  &kp F12
                 &trans &trans   &trans   &trans    &trans &trans &trans &trans &trans &trans   &trans  &lt 6 TAB   &trans   &trans
             >;
+            sensor-bindings = <&enc00>;
         };
         scroll {    // layer7
             display-name = "Scroll";
@@ -220,6 +229,7 @@
                 &none  &none  &none  &none  &none                                &none  &none  &none  &none  &none 
                 &trans &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans &trans
             >;
+            sensor-bindings = <&enc00>;
         };
     
     };
