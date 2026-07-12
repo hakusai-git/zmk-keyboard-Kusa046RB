@@ -133,10 +133,10 @@
             display-name = "Arrrows"; 
 
             bindings = <
-                &mo 0 &none &none &none &none       &none &none       &none &none &none &none &none 
-                &none &none &none &none &none                         &none &none &none &none &none 
-                &none &none &none &none &none                         &none &none &none &none &none 
-                &none &none &none &none &none &none &none &none &none &none &none &none &none &none 
+                &kp DOT           &kp N7  &kp N8  &kp N9  &kp N0              &none  &none         &none  &none  &none  &none  &none 
+                &kp KP_ASTERRISK  &kp N4  &kp N5  &kp N6  &kp KP_MINUS                             &none  &none  &none  &none  &none 
+                &kp KP_SLASH      &kp N1  &kp N2  &kp N3  &kp KP_PLUS                              &none  &none  &none  &none  &none 
+                &trans            &trans  &trans  &trans  &trans       &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
         };
 
@@ -144,10 +144,10 @@
             display-name = "WASD";
 
             bindings = <
-                &mo 0 &none &none &none &none       &none &none       &none &none &none &none &none 
-                &none &none &none &none &none                         &none &none &none &none &none 
-                &none &none &none &none &none                         &none &none &none &none &none 
-                &none &none &none &none &none &none &none &none &none &none &none &none &none &none 
+                &none  &none  &none  &none  &none         &none  &none         &none  &none  &none  &none  &none 
+                &none  &none  &none  &none  &none                              &none  &none  &none  &none  &none 
+                &none  &none  &none  &none  &none                              &none  &none  &none  &none  &none 
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
         };
 
