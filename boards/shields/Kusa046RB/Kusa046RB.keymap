@@ -138,10 +138,10 @@
             display-name = "Arrrows"; 
 
             bindings = <
-                &kp DOT         &kp N7  &kp N8  &kp N9  &kp N0              &tarns &trans        &none  &none    &kp UP  &none     &none 
-                &kp KP_ASTERISK &kp N4  &kp N5  &kp N6  &kp KP_MINUS                             &none  &kp LEFT &kp DOW &kp RIGHT &none 
-                &kp KP_SLASH    &kp N1  &kp N2  &kp N3  &kp KP_PLUS                              &none  &none    &none   &none     &none 
-                &trans          &trans  &trans  &trans  &trans       &trans &trans &trans &trans &trans &trans   &trans  &trans    &trans
+                &kp DOT         &kp N7  &kp N8  &kp N9  &kp N0              &tarns &trans        &none  &none    &kp UP   &none     &none 
+                &kp KP_ASTERISK &kp N4  &kp N5  &kp N6  &kp KP_MINUS                             &none  &kp LEFT &kp DOWN &kp RIGHT &none 
+                &kp KP_SLASH    &kp N1  &kp N2  &kp N3  &kp KP_PLUS                              &none  &none    &none    &none     &none 
+                &trans          &trans  &trans  &trans  &trans       &trans &trans &trans &trans &trans &trans   &trans   &trans    &trans
             >;
         };
 
