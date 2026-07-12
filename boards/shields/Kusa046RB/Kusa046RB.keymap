@@ -122,7 +122,7 @@
         enc0: encoder-0 {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&kp B>, <&mkp MB5>;
+            bindings = <&kp C>, <&mkp MB5>;
         };
         enc4: encoder-4 {
             compatible = "zmk,behavior-sensor-rotate";
