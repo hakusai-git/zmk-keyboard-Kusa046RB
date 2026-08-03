@@ -36,7 +36,6 @@
 
 
 / {
-    /* 1. スクロール処理の定義 */
     zip_scroll_mapper: zip_scroll_mapper {
         compatible = "zmk,input-processor-code-mapper";
         #input-processor-cells = <0>;
@@ -52,27 +51,22 @@
         codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
     };
 
-/* 2. トラックボールのリスナー設定（レイヤー7でスクロールを有効化） */
+    /* リスナー設定：ここでレイヤー7のみスクロールを適用する */
     trackball_listener {
-        status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
         
-        /* 通常のポインター動作 */
+        /* レイヤー7以外では通常のポインター動作 */
         default_binder {
             layers = <0 1 2 3 4 5 6>;
         };
 
-        /* レイヤー7専用のスクロール動作 */
-        scroller {
+        /* レイヤー7ではスクロールに変換 */
+        scroll_layer_binder {
             layers = <7>;
-            input-processors = <
-                &zip_scroll_mapper
-                &zip_scroll_scaler 1 4  /* 数値の調整で速度を変更: 第2引数を増やすと遅く、減らすと速くなります */
-            >;
+            input-processors = <&zip_scroll_mapper &zip_scroll_scaler 1 4>;
         };
     };
-
 
     behaviors {
 // -(=), ;(+)を適用する
