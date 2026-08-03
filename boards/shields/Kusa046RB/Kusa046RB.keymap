@@ -36,7 +36,7 @@
 
 
 / {
-    /* 1. X/Yの動きを水平/垂直スクロールの信号に変換する */
+    /* 1. スクロール処理の定義 */
     zip_scroll_mapper: zip_scroll_mapper {
         compatible = "zmk,input-processor-code-mapper";
         #input-processor-cells = <0>;
@@ -45,39 +45,31 @@
             , <INPUT_REL_Y INPUT_REL_WHEEL>;
     };
 
-    /* 2. スクロールが爆速になりすぎないように減速する */
     zip_scroll_scaler: zip_scroll_scaler {
         compatible = "zmk,input-processor-scaler";
         #input-processor-cells = <2>;
         type = <INPUT_EV_REL>;
         codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
-        // track-remainders; // 端数切捨てで微細な動作を抑制
     };
 
-    /* 3. レイヤー7にいる間だけ、上の2つを適用してトラックボールを傍受する */
-    /* トラックボールのインプットリスナー設定 */
+/* 2. トラックボールのリスナー設定（レイヤー7でスクロールを有効化） */
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
+        device = <&trackball>;
         
-        /* 💡お使いのトラックボールのデバイスノード名（&trackball や &pmw3610 など）に合わせてください */
-        device = <&trackball>; 
-
+        /* 通常のポインター動作 */
         default_binder {
             layers = <0 1 2 3 4 5 6>;
         };
 
-        /* 【公式仕様】子ノードを作ってレイヤーごとの挙動を上書き定義します */
+        /* レイヤー7専用のスクロール動作 */
         scroller {
-            layers = <7>; /* レイヤー7がアクティブなときだけ発動 */
+            layers = <7>;
             input-processors = <
-                &zip_xy_to_scroll_mapper /* マウス移動をスクロールに変換 */
-                
-                &zip_scroll_scaler 1 4 /* スクロール量の比率を調整（例: 1 3 だと3倍細かく/遅くなり、3 1 だと3倍粗く/速くなります） */
-
-                // &zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT) /* 必要に応じてスクロール方向を反転*/
-                // &zip_scroll_transform (INPUT_TRANSFORM_X_INVERT)
-            >; 
+                &zip_scroll_mapper
+                &zip_scroll_scaler 1 4  /* 数値の調整で速度を変更: 第2引数を増やすと遅く、減らすと速くなります */
+            >;
         };
     };
 
