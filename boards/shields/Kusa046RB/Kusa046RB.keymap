@@ -216,7 +216,7 @@
             display-name = "Scroll";
 
             bindings = <
-                &none  &none  &none  &none  &none         &mkp MB3 &trans        &none  &none  &none  &none  &none 
+                &none  &none  &none  &none  &none         &mkp MB3 &trans        &kp A  &none  &none  &none  &none 
                 &none  &none  &none  &none  &none                                &none  &none  &none  &none  &none 
                 &none  &none  &none  &none  &none                                &none  &none  &none  &none  &none 
                 &trans &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans &trans
